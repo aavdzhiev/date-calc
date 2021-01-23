@@ -39,6 +39,7 @@ const char* calculateDayOfTheWeek(short int day, short int month, short int year
         month = 14;
         year--;
     }
+    //Zeller’s Congruence
     short int dayOfWeek = (day + 13 * (month + 1) / 5 + lastTwoDigitsOfYear + lastTwoDigitsOfYear/4 + firstTwoDigitsOfYear/4 - 5*firstTwoDigitsOfYear) % 7;
     switch(dayOfWeek){
         case 1:
