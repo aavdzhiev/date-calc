@@ -1,17 +1,9 @@
 #include <stdio.h>
-// input ден месец година
-// while menu - DONE
-// 
-// function for leapYear()
-// function to calculate day of the week
-// function to calc days in month - takes year as input returns days short int
-//
-// output %d.%d.%dddd се пада събота.
-//        Този месец има %d дни.
-//        Годината (не) е високосна.
+
 const char* calculateDayOfTheWeek(short int day, short int month, short int year);
 short int isLeap(short int year);
-
+short int months_day(short int month, short int year);
+        
 int main(void)
 {
     char i;
@@ -22,7 +14,7 @@ int main(void)
         printf("Enter Day, Month, and Year as DD MM YYYY: \n");
         scanf("%2hu%2hu%4hu", &day, &month, &year);
         printf("%s\n", calculateDayOfTheWeek(day, month, year));
-        printf("Do you want to enter another date: (Y/N)");
+        printf("Do you want to enter another date: (Y/N)\n");
         scanf(" %c", &i);
     } while (i == 'y' || i == 'Y');
 
@@ -76,4 +68,21 @@ short int isLeap(short int year) {
     } else {
         return 0;
     }
+}
+
+short int months_day(short int month, short int year){
+        short int days = 31;
+        
+        if (month == 4 || month == 6 || month == 9 || month == 11)
+                days = 30;
+
+        else if (month == 2) {
+                if ((((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) == 0)
+                        days = 29;
+                else
+                        days = 28;                
+        }
+
+        
+        return days;
 }
