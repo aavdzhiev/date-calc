@@ -13,8 +13,6 @@ int main(void)
                 printf("%hu,%hu,%hu\n", day, month, year);
                 
                 printf("Days in month: %hu\n", months_day(month,year));
-                scanf(" %c", &i);
-                printf("\n%c", i);
 
         } while (i == 'y');
 
