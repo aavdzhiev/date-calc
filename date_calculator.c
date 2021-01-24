@@ -3,7 +3,6 @@
 const char *calculateDayOfTheWeek(short int day, short int month, short int year);
 short int isLeap(short int year);
 short int months_day(short int month, short int year);
-void inputOutput();
 
 int main(void)
 {
@@ -14,7 +13,9 @@ int main(void)
         short int day, month, year;
         printf("Enter Day, Month, and Year as DD MM YYYY: \n");
         scanf("%2hu%2hu%4hu", &day, &month, &year);
-        if (day < 0 || day > 31 || month < 0 || month > 12 ) {
+        if (day <= 0 || day > 31 || month <= 0 || month > 12 || year <= 0 || 
+        ( isLeap(year) && day > 29 && month == 2 ) || ( !isLeap(year) && day > 28 && month==2) ) {
+
             printf("Please enter a valid date.\n");
             printf("Do you want to enter another date: (Y/N)\n");
             scanf(" %c", &i);
@@ -41,7 +42,8 @@ const char *calculateDayOfTheWeek(short int day, short int month, short int year
         year--;
     }
     //Zeller’s Congruence
-    short int dayOfWeek = (day + 13 * (month + 1) / 5 + lastTwoDigitsOfYear + lastTwoDigitsOfYear / 4 + firstTwoDigitsOfYear / 4 - firstTwoDigitsOfYear) % 7;
+    //short int dayOfWeek = (day + 13 * (month + 1) / 5 + lastTwoDigitsOfYear + lastTwoDigitsOfYear / 4 + firstTwoDigitsOfYear / 4 - firstTwoDigitsOfYear) % 7;
+    short int dayOfWeek = (day + 13 * (month + 1) / 5 + year + year / 4 - year / 100 + year / 400) % 7;
     switch (dayOfWeek) {
     case 1:
         return "Sunday";
