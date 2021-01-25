@@ -14,14 +14,12 @@ int main (void) {
         if (day <= 0 || day > 31 || month <= 0 || month > 12 || year <= 0 || 
         ( isLeap(year) && day > 29 && month == 2 ) || ( !isLeap(year) && day > 28 && month==2) ) {
             printf("Please enter a valid date.\n");
-            printf("Do you want to enter another date: (Y/N)\n");
-            scanf(" %c", &i);
         }
         else {
             printf("%hu.%hu.%hu is %s and the month has %hu days\n", day, month, year, calculateDayOfTheWeek(day, month, year), months_day(month, year));
-            printf("Do you want to enter another date: (Y/N)\n");
-            scanf(" %c", &i); 
         }
+        printf("Do you want to enter another date: (Y/N)\n");
+        scanf(" %c", &i); 
     } while (i == 'y' || i == 'Y');
 
     return 0;
